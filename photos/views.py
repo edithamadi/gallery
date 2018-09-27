@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.http  import HttpResponse,Http404
 import datetime as dt
 # Create your views here.
@@ -9,15 +9,15 @@ def photos_of_day(request):
     date = dt.date.today()
 
  # FUNCTION TO CONVERT DATE OBJECT TO FIND EXACT DAY
-    day = convert_dates(date)
-    html = f'''
-        <html>
-            <body>
-                <h1>Photos for {day} {date.day}-{date.month}-{date.year}</h1>
-            </body>
-        </html>
-            '''
-    return HttpResponse(html)
+    # day = convert_dates(date)
+    # html = f'''
+    #     <html>
+    #         <body>
+    #             <h1>Photos for {day} {date.day}-{date.month}-{date.year}</h1>
+    #         </body>
+    #     </html>
+    #         '''
+    return render(request, 'all-photos/today-photos.html',{"date": date,})
 
 def convert_dates(dates):
 
@@ -41,7 +41,7 @@ def past_days_photos(request,past_date):
         assert False
 
     if date == dt.date.today():
-        return redirect(photos_today)
+        return redirect(photos_of_day)
 
-    news = Article.days_news(date)
-    return render(request, 'all-photos/past-photos.html',{"date": date,"photos":photos
+    
+    return render(request, 'all-photos/past-photos.html',{"date": date})
