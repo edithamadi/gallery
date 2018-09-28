@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class Category(models.Model):
+class category(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
@@ -38,7 +38,7 @@ class Image(models.Model):
     image = models.ImageField(upload_to='images/')
     name = models.CharField(max_length=40)
     description = models.TextField()
-    category = models.ForeignKey(Category)
+    category = models.ManyToManyField(category)
     location = models.ForeignKey(Location)
     pub_date = models.DateTimeField(auto_now_add=True)
 
