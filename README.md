@@ -8,7 +8,6 @@ The home page allows users to see various images:
 User can see all images as per location they were taken
 Users can also search for images based categories
 Admin can upload images from a django dashboard
-View the complete site here
 
 - Technologies Used
 
@@ -18,9 +17,6 @@ View the complete site here
 - JavaScript
 - Postgressql
 - Heroku
-
-- Specifications
-To view the user stories or BDD check the specs file.
 
 - Prerequisite
 The gallery project requires a prerequisite understanding of the following:
@@ -51,6 +47,7 @@ DEBUG = True
 Run initial Migration
 python3.6 manage.py makemigrations gallery
 python3.6 manage.py migrate
+python3.6 manage.py test
 Run the app
 python3.6 manage.py runserver
 Open terminal on localhost:8000
