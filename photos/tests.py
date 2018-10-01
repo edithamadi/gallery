@@ -1,21 +1,21 @@
 from django.test import TestCase
-from .models import Image,Category,Location
+from .models import Image,category,Location
 # Create your tests here.
 
 class CategoryTestClass(TestCase):
   
     # Set up method
     def setUp(self):
-        self.waterfalls= Category(name = 'Waterfalls')
+        self.waterfalls= category(name = 'Waterfalls')
 
     # Testing  instance
     def test_instance(self):
-        self.assertTrue(isinstance(self.waterfalls,Category))
+        self.assertTrue(isinstance(self.waterfalls,category))
 
     # Testing Save Method
     def test_save_method(self):
         self.waterfalls.save_category()
-        categories = Category.objects.all()
+        categories = category.objects.all()
         self.assertTrue(len(categories) > 0)
 
 class LocationTestClass(TestCase):
@@ -44,12 +44,12 @@ class ImageTestClass(TestCase):
        self.nairobi = Location(name='nairobi')
        self.nairobi.save_location()
 
-       #creating a new category and saving it
-       self.waterfalls = Category(name='waterfalls')
-       self.waterfalls.save()
+       #creating a new Category and saving it
+       waterfalls = category(name='waterfalls')
+       waterfalls.save()
 
        #creating an new image
-       self.image = Image(image='test.jpg', name='name', description = 'testing image class', location=self.nairobi, category = self.waterfalls)
+       self.image = Image(id=1,image='test.jpg', name='name', description = 'testing image class', location=self.nairobi)
 
    def test_instance(self):
        self.assertTrue(isinstance(self.image, Image))
@@ -87,36 +87,36 @@ class ImageTestClass(TestCase):
        image = Image.objects.get(id=self.image.id)
        self.assertTrue(this_img, image)
 
-   def test_filter_by_location(self):
-       """
-       Function to test if you can get an image by its location
-       """
-       self.image.save_image()
-       this_img = self.image.filter_by_location(self.image.location_id)
-       image = Image.objects.filter(location=self.image.location_id)
-       self.assertTrue(this_img, image)
+#    def test_search_image(self):
+#         """
+#         Function to test if you can search an image
+#         """
+#         self.image.save_image()
+#         images = Image.search_image('waterfalls')
+#         self.assertTrue(len(images)>0)
 
-#    def test_filter_by_category_name(self):
+#    def test_filter_by_location(self):
 #        """
-#        Function to test if you can get an image by its category name
+#        Function to test if you can get an image by its location
 #        """
 #        self.image.save_image()
-#        images = Image.search_image(self,image)
+#        this_img = Image.search_by_location('nairobi')
+#        image = Image.objects.filter(location=self.image.location_id)
+#        self.assertTrue(this_img, image)
+
+#    def test_filter_by_Category_name(self):
+#        """
+#        Function to test if you can get an image by its Category name
+#        """
+#        self.image.save_image()
+#        images = Image.search_image(self.image)
 #        self.assertTrue(len(images)>0)
 
 # #    def test_get_all_images(self):
 
-# #        """
-# #        Function to test if you can get all images
-# #        """
-# #        self.image.save_image()
-# #        self.assertTrue(len(images)>0)
+#        """
+#        Function to test if you can get all images
+#        """
+#        self.image.save_image()
+#        self.assertTrue(len(images)>0)
 
-   
-# #    def test_search_image(self):
-# #         """
-# #         Function to test if you can search an image
-# #         """
-# #         self.image.save_image()
-# #         images = Image.search_image('this image')
-# #         self.assertTrue(len(images)>0)

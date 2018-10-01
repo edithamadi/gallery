@@ -18,7 +18,7 @@ def search_results(request):
        searched_images = Image.search_by_category(search_term)
        message = f"{search_term}"
 
-       return render(request, 'all-photos/search.html',{"message":message,"image": searched_images})
+       return render(request, 'all-photos/search.html',{"message":message,"images": searched_images})
 
    else:
        message = "No related search found"
