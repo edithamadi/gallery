@@ -1,9 +1,6 @@
-{%extends 'all-photos/base.html'%}
-
-{% block content %}
-{{block.super}}
 
 <div class="container">
+    {% for photos in photos  %}
 
     <div class="row">
         <h1 class="text-center">{{image.name}}</h1>
@@ -11,7 +8,7 @@
    
     
     <div class="row">
-      <img src="{{image.image.url}}"  class="img-responsive" alt="">
+      <img src="{{photos.image.url}}"  class="img-responsive" alt="">
     </div>
  
     
@@ -32,7 +29,6 @@
     <div class="row">
       <p>Posted {{image.pub_date|timesince}} </p>
     </div>
+    {%endfor%}
  
   </div>
-
-{% endblock %}

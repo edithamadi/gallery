@@ -7,18 +7,11 @@
 <div class="container">
     <div class="row">
 {% for photos_item in photos%}
-<div class="col-md-4"
-<img src="{{photos_item.image.url}}" >
+<div class="col-md-4">
+<img src="{{photos_item.image.url}}" style="width: 300px; height: 300px" data-toggle="modal" data-target="#exampleModal{{photos_item.id}}" >
 <div class="hover">
-    <h1>{{photos_item.name}}</h1>
-    </div>
-</div>
 
-{%endfor%}
 
-{% endblock %}
-
-<!--The modal-->
 {% for photos_item in photos %}
 <div class="modal fade" id="exampleModal{{photos_item.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
   aria-hidden="true">
@@ -31,7 +24,7 @@
         </button>
       </div>
       <div class="modal-body">
-        <img src="{{photos_item.image.url}}" class="img-fluid" data-toggle="modal" data-target="#exampleModal{{image.id}}">
+        <img src="{{photos_item.image.url}}" class="img-fluid" data-toggle="modal" data-target="#exampleModal{{image.id}}" style="width:500px;height:500px">
         <p> {{photos_item.description }}</p><label for="location"> Image location :{{photos_item.location }}</label>
       </div>
       <div class="modal-footer">
@@ -43,4 +36,13 @@
     </div>
   </div>
 </div>
-{% endfor%}
+
+{%endfor%}
+</div>
+    </div>
+    {%endfor%}
+    </div>
+</div>
+
+
+{%endblock%}
