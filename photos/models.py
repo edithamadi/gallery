@@ -14,9 +14,6 @@ class category(models.Model):
     def delete_category(self):
         self.delete()
 
-    def update_category(self):
-        self.update()
-    
 
 class Location(models.Model):
     name = models.CharField(max_length=50)
@@ -29,9 +26,6 @@ class Location(models.Model):
 
     def delete_location(self):
         self.delete()
-
-    def update_Location(self):
-        self.update()
     
 
 class Image(models.Model):
@@ -50,9 +44,6 @@ class Image(models.Model):
 
     def delete_image(self):
         self.delete()
-
-    def update_image(self):
-        self.update()
     
     @classmethod
     def get_all_images(cls):
@@ -68,15 +59,3 @@ class Image(models.Model):
     def search_by_category(cls,search_term):
         image = cls.objects.filter(category__name__icontains=search_term)
         return image
-
-    @classmethod
-    def search_by_location(cls, location):
-        image = cls.objects.filter(location__name=location)
-        return image
-
-    @classmethod
-    def search_image(cls, category):
-        images = cls.objects.filter(category__name__icontains=category)
-        return images
-
-
